@@ -1,0 +1,11 @@
+services:
+  movie.search_filter:
+    parent: 'api_platform.doctrine.orm.search_filter'
+    arguments: [{id: 'exact', title: 'partial', description: 'partial'}]
+    tags: ['api_platform.filter']
+
+    # exact = where = id
+    # start = where campo like  "%nome"
+    # end  = where campo like  "nome%"
+    # parcial = where campo like  "%nome%"
+    # word_start = 

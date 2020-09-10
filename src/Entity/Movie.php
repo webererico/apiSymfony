@@ -6,7 +6,6 @@ use App\Repository\MovieRepository;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Core\Annotation\ApiResource;
 
-
 /**
  * @ORM\Entity(repositoryClass=MovieRepository::class)
  * @ApiResource()
@@ -34,6 +33,13 @@ class Movie
      * @ORM\Column(type="date")
      */
     private $release_date;
+
+    /**
+     * @var object
+     * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="movies")
+     * 
+    */
+    private $category;
 
     public function getId(): ?int
     {
@@ -73,6 +79,17 @@ class Movie
     {
         $this->release_date = $release_date;
 
+        return $this;
+    }
+
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+    public function setCategory($category)
+    {
+        $this->category = $category;
         return $this;
     }
 }
